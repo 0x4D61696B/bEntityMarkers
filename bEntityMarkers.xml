@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Component
-	xmlns="http://www.red5studios.com/"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd"
-	>
-	<Info
-		title="bEntityMarkers"
-		author="BurstBiscuit"
-		description=""
-		url=""
-		uiVersion="1000"
-	/>
-	<Events>
-		<Event name="ON_COMPONENT_LOAD"				bind="OnComponentLoad" />
-		<Event name="ON_DEPLOYABLE_ROSTER_UPDATE"	bind="OnDeployableRosterUpdate" />
-		<Event name="ON_ENTER_ZONE"					bind="OnEnterExitZone" />
-		<Event name="ON_EXIT_ZONE"					bind="OnEnterExitZone" />
-		<Event name="ON_PLAYER_READY"				bind="OnPlayerReady" />
-		<Event name="ON_SIN_CARD_OP"				bind="OnSinCardOp" />
-		<Event name="ON_UI_ENTITY_AVAILABLE"		bind="OnEntityAvailable" />
-		<Event name="ON_UI_ENTITY_LOST"				bind="OnEntityLost" />
-	</Events>
-	<Textures>
-		<Texture name="mentor" src="./textures/mentor.png" premultiplied="false" />
-	</Textures>
+    xmlns="http://www.red5studios.com/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd"
+    >
+    <Info
+        title="bEntityMarkers"
+        author="BurstBiscuit"
+        description=""
+        url=""
+        uiVersion="1000"
+    />
+    <Events>
+        <Event name="ON_COMPONENT_LOAD"             bind="OnComponentLoad" />
+        <Event name="ON_DEPLOYABLE_ROSTER_UPDATE"   bind="OnDeployableRosterUpdate" />
+        <Event name="ON_ENTER_ZONE"                 bind="OnEnterExitZone" />
+        <Event name="ON_EXIT_ZONE"                  bind="OnEnterExitZone" />
+        <Event name="ON_PLAYER_READY"               bind="OnPlayerReady" />
+        <Event name="ON_SIN_CARD_OP"                bind="OnSinCardOp" />
+        <Event name="ON_UI_ENTITY_AVAILABLE"        bind="OnEntityAvailable" />
+        <Event name="ON_UI_ENTITY_LOST"             bind="OnEntityLost" />
+    </Events>
+    <Textures>
+        <Texture name="mentor" src="./textures/mentor.png" premultiplied="false" />
+    </Textures>
 </Component>
