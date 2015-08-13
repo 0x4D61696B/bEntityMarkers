@@ -34,25 +34,29 @@ Options.IO = {
             Name = true,
             Frame = true,
             Special = true,
-            Deployable = true
+            Deployable = true,
+            Collectible = true
         },
         Ping = {
             Name = false,
             Frame = false,
             Special = false,
-            Deployable = false
+            Deployable = false,
+            Collectible = false
         },
         Radar = {
             Name = false,
             Frame = false,
             Special = false,
-            Deployable = false
+            Deployable = false,
+            Collectible = false
         },
         WorldMap = {
             Name = false,
             Frame = false,
             Special = false,
-            Deployable = false
+            Deployable = false,
+            Collectible = false
         }
     },
     Character = {
@@ -124,6 +128,10 @@ Options.IO = {
             SINBeacon = false,
             SmokeScreen = false,
             Teleportal = false
+        },
+        Collectible = {
+            Enable = false,
+            Codex = false
         }
     }
 }
@@ -174,6 +182,10 @@ local c_OptionsMap = {
         Options.IO.Marker.HUD.Deployable = value
     end,
     
+    MARKER_HUD_COLLECTIBLE = function(value)
+        Options.IO.Marker.HUD.Collectible = value
+    end,
+    
     MARKER_PING_NAME = function(value)
         Options.IO.Marker.Ping.Name = value
     end,
@@ -188,6 +200,10 @@ local c_OptionsMap = {
     
     MARKER_PING_DEPLOYABLE = function(value)
         Options.IO.Marker.Ping.Deployable = value
+    end,
+    
+    MARKER_PING_COLLECTIBLE = function(value)
+        Options.IO.Marker.Ping.Collectible = value
     end,
     
     MARKER_RADAR_NAME = function(value)
@@ -206,6 +222,10 @@ local c_OptionsMap = {
         Options.IO.Marker.Radar.Deployable = value
     end,
     
+    MARKER_RADAR_COLLECTIBLE = function(value)
+        Options.IO.Marker.Radar.Collectible = value
+    end,
+    
     MARKER_WORLDMAP_NAME = function(value)
         Options.IO.Marker.WorldMap.Name = value
     end,
@@ -220,6 +240,10 @@ local c_OptionsMap = {
     
     MARKER_WORLDMAP_DEPLOYABLE = function(value)
         Options.IO.Marker.WorldMap.Deployable = value
+    end,
+    
+    MARKER_WORLDMAP_COLLECTIBLE = function(value)
+        Options.IO.Marker.WorldMap.Collectible = value
     end,
     
     CHARACTER_NAME = function (value)
@@ -416,6 +440,14 @@ local c_OptionsMap = {
     
     DEPLOYABLE_RECON_TELEPORTAL = function(value)
         Options.IO.Deployable.Recon.Teleportal = value
+    end,
+    
+    DEPLOYABLE_COLLECTIBLE_GROUP = function(value)
+        Options.IO.Deployable.Collectible.Enable = value
+    end,
+    
+    DEPLOYABLE_COLLECTIBLE_CODEX = function(value)
+        Options.IO.Deployable.Collectible.Codex = value
     end
 }
 
@@ -601,6 +633,20 @@ function Options.Setup()
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_RECON_POWERFIELD", label = "Power Field", default = false, subtab = {"Deployables", "Recon"}})
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_RECON_TELEPORTAL", label = "Teleportal", default = false, subtab = {"Deployables", "Recon"}})
     InterfaceOptions.StopGroup({subtab = {"Deployables", "Recon"}})
+    
+    -- Collectibles
+    InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_GROUP", label = "Track Collectibles", default = false, subtab = {"Collectibles"}})
+    
+    InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_HUD_COLLECTIBLE", label = "Show on HUD", default = true, subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_COLLECTIBLE", label = "Show on radar", default = false, subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_COLLECTIBLE", label = "Show on world map", default = false, subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_PING_COLLECTIBLE", label = "Enable ping", default = false, subtab = {"Collectibles"}})
+    InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
+    
+    InterfaceOptions.StartGroup({label = "Tracking Options", subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_CODEX", label = "Codex", default = false, subtab = {"Collectibles"}})
+    InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
     
     CB2_ApplyOptions = Callback2.Create()
     CB2_ApplyOptions:Bind(Options.ApplyOptions)
