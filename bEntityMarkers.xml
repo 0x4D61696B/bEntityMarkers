@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Component
-    xmlns="http://www.red5studios.com/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd"
+        xmlns="http://www.red5studios.com/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd"
     >
     <Info
         title="bEntityMarkers"
@@ -11,6 +11,7 @@
         url=""
         uiVersion="1000"
     />
+    
     <Events>
         <Event name="ON_COMPONENT_LOAD"             bind="OnComponentLoad" />
         <Event name="ON_DEPLOYABLE_ROSTER_UPDATE"   bind="OnDeployableRosterUpdate" />
@@ -21,7 +22,10 @@
         <Event name="ON_UI_ENTITY_AVAILABLE"        bind="OnEntityAvailable" />
         <Event name="ON_UI_ENTITY_LOST"             bind="OnEntityLost" />
     </Events>
+    
     <Textures>
-        <Texture name="mentor" src="./textures/mentor.png" premultiplied="false" />
+        <Texture name="Publisher" src="components/MainUI/HUD/Chat/Textures/PublisherIcon.png" premultiplied="false" />
+        <Texture name="Ranger" src="components/MainUI/HUD/Chat/Textures/RangerIcon.png" premultiplied="false" />
+        <Texture name="Mentor" src="./textures/mentor.png" premultiplied="false" />
     </Textures>
 </Component>

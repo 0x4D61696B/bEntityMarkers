@@ -637,15 +637,15 @@ function Options.Setup()
     -- Collectibles
     InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_GROUP", label = "Track Collectibles", default = false, subtab = {"Collectibles"}})
     
+	InterfaceOptions.StartGroup({label = "Tracking Options", subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_CODEX", label = "Codex", default = false, subtab = {"Collectibles"}})
+    InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
+	
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_COLLECTIBLE", label = "Show on HUD", default = true, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_COLLECTIBLE", label = "Show on radar", default = false, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_COLLECTIBLE", label = "Show on world map", default = false, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_COLLECTIBLE", label = "Enable ping", default = false, subtab = {"Collectibles"}})
-    InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
-    
-    InterfaceOptions.StartGroup({label = "Tracking Options", subtab = {"Collectibles"}})
-        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_CODEX", label = "Codex", default = false, subtab = {"Collectibles"}})
     InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
     
     CB2_ApplyOptions = Callback2.Create()

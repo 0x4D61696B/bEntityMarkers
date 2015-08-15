@@ -172,7 +172,7 @@ local c_DeployableMarkerData = {
     },
     Collectible = {
         ["Codex"] = function(entityInfo)
-            if (Options.IO.Deployable.Collectible.Enable and Options.IO.Deployable.Collectible.Codex) then
+            if (Options.IO.Deployable.Collectible.Codex) then
                 return {title = entityInfo.name, iconInfo = {asset = 323286}}
             else
                 return false
@@ -284,11 +284,11 @@ function Tracker.CheckEntity(entityId)
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Developer and entityInfo.isDev) then
                 Tracker.AddMapMarker(entityId, {name = "<Developer> " .. entityName}, "Special", {texture = "icons", region = "r5_logo"})
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Ranger and entityInfo.isRanger) then
-                Tracker.AddMapMarker(entityId, {name = "<Ranger> " .. entityName}, "Special", {texture = "icons", region = "r5_logo"})
+                Tracker.AddMapMarker(entityId, {name = "<Ranger> " .. entityName}, "Special", {texture = "Ranger"})
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Publisher and entityInfo.isPublisher) then
-                Tracker.AddMapMarker(entityId, {name = "<Publisher> " .. entityName}, "Special", {texture = "icons", region = "r5_logo"})
+                Tracker.AddMapMarker(entityId, {name = "<Publisher> " .. entityName}, "Special", {texture = "Publisher"})
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Mentor and entityInfo.isMentor) then
-                Tracker.AddMapMarker(entityId, {name = "<Mentor> " .. entityName}, "Special", {texture = "mentor"})
+                Tracker.AddMapMarker(entityId, {name = "<Mentor> " .. entityName}, "Special", {texture = "Mentor"})
             
             -- Tracking by battleframe
             elseif (Options.IO.Character.Frame.Enable and entityInfo.battleframe and Options.IO.Character.Frame["_" .. entityInfo.battleframe] and entityInfo.frame_icon_id  and c_Battleframes[tonumber(entityInfo.frame_icon_id)] and Options.IO.Character.Frame[c_Battleframes[tonumber(entityInfo.frame_icon_id)]]) then
@@ -310,7 +310,7 @@ function Tracker.CheckEntity(entityId)
                 Tracker.AddMapMarker(entityId, {name = markerData.title}, "Deployable", markerData.iconInfo)
             
             -- Collectible
-            elseif (c_DeployableMarkerData.Collectible[entityInfo.deployableType] and c_DeployableMarkerData.Collectible[entityInfo.deployableType](entityInfo)) then
+            elseif (Options.IO.Deployable.Collectible.Enable and c_DeployableMarkerData.Collectible[entityInfo.deployableType] and c_DeployableMarkerData.Collectible[entityInfo.deployableType](entityInfo)) then
                 markerData = c_DeployableMarkerData.Collectible[entityInfo.deployableType](entityInfo)
                 Tracker.AddMapMarker(entityId, {name = markerData.title}, "Collectible", markerData.iconInfo)
             
