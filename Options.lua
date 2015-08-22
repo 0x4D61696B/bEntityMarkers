@@ -462,7 +462,7 @@ function Options.OnOptionChanged(id, value)
     if (c_OptionsMap[id]) then
         c_OptionsMap[id](value)
     else
-        Debug.Log("Unhandled message", {id = id, value = value})
+        Debug.Table("Unhandled message", {id = id, value = value})
     end
     
     -- Don't spam marker visibity updates
@@ -707,7 +707,7 @@ function Options.ListPlayerNames()
 end
 
 function Options.ApplyOptions()
-    Debug.Log("Options.IO", Options.IO)
+    Debug.Table("Options.IO", Options.IO)
     Debug.Log("Applying options ...")
     Tracker.CheckAvailableTargets()
     Tracker.UpdateMapMarkerVisibility()

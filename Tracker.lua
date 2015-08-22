@@ -204,7 +204,7 @@ function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
         return
     end
     
-    Debug.Log("AddMapMarker()", entityId, title, markerType, iconInfo)
+    Debug.Table("AddMapMarker() " .. tostring(entityId), {title = title, markerType = markerType, iconInfo = iconInfo})
     
     MARKER = MapMarker.Create("bem_" .. markerId)
     w_MapMarkers[markerId] = MARKER
@@ -265,13 +265,13 @@ function Tracker.CheckEntity(entityId)
         local entityInfo = Game.GetTargetInfo(entityId)
         
         if (not entityInfo) then
-            Debug.Log("entityInfo is nil", entityId)
+            Debug.Log("no entityInfo", entityId)
             return
         
         -- Player character tracking
         elseif (not entityInfo.isNpc and not entityInfo.hostile and entityInfo.name and entityInfo.type and entityInfo.type == "character") then
             if (Options.IO.Debug.Character) then
-                Debug.Log("entityInfo", entityId, entityInfo)
+                Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
             end
             
             local entityName = ChatLib.StripArmyTag(entityInfo.name)
@@ -318,10 +318,10 @@ function Tracker.CheckEntity(entityId)
             elseif (w_MapMarkers[tostring(entityId)]) then
                 Tracker.RemoveMapMarker(entityId)
             elseif (Options.IO.Debug.Deployable.Owner and ownerInfo) then
-                Debug.Log("entityInfo", entityId, entityInfo)
-                Debug.Log("ownerInfo", ownerInfo)
+                Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
+                Debug.Table("ownerInfo", ownerInfo)
             elseif (Options.IO.Debug.Deployable.Other) then
-                Debug.Log("entityInfo", entityId, {name = entityInfo.name, deployableType = entityInfo.deployableType})
+                Debug.Table("entityInfo " .. tostring(entityId), {name = entityInfo.name, deployableType = entityInfo.deployableType})
             end
         end
     end
