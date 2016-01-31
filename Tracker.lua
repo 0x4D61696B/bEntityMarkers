@@ -50,16 +50,7 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
-        -- Dreadnaught
-        ["Gravity Field Grenade - Gravity Sphere"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Dreadnaught.Enable and Options.IO.Deployable.Dreadnaught.GravityFieldGrenade) then
-                return {title = "Gravity Field Grenade", iconInfo = {asset = 222493}}
-            else
-                return false
-            end
-        end,
-        
+
         -- Engineer
         ["Energy Shield"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.DeployableShield) then
@@ -68,7 +59,7 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
+
         ["Heavy Turret - Rank I"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.HeavyTurret) then
                 return {title = "Heavy Turret", iconInfo = {asset = 222499}}
@@ -76,7 +67,7 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
+
         ["Heavy Turret - Rank II"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.HeavyTurret) then
                 return {title = "Heavy Turret", iconInfo = {asset = 222499}}
@@ -84,7 +75,7 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
+
         ["Multi Turret"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.MultiTurret) then
                 return {title = "Multi Turret", iconInfo = {asset = 222505}}
@@ -92,31 +83,7 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
-        ["Overclocking Station - Deployable"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.OverclockingStation) then
-                return {title = "Overclocking Station", iconInfo = {asset = 222508}}
-            else
-                return false
-            end
-        end,
-        
-        ["Pulse Generator"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.PulseGenerator) then
-                return {title = "Pulse Generator", iconInfo = {asset = 202142}}
-            else
-                return false
-            end
-        end,
-        
-        ["Sentinel Pod"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.SentinelPod) then
-                return {title = "Sentinel Pod", iconInfo = {asset = 222515}}
-            else
-                return false
-            end
-        end,
-        
+
         ["Supply Station"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.SupplyStation) then
                 return {title = "Supply Station", iconInfo = {asset = 222522}}
@@ -124,47 +91,11 @@ local c_DeployableMarkerData = {
                 return false
             end
         end,
-        
+
         -- Recon
-        ["PowerField"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Recon.Enable and Options.IO.Deployable.Recon.PowerField) then
-                return {title = "Power Field", iconInfo = {asset = 222486}}
-            else
-                return false
-            end
-        end,
-        
         ["Remote Flashbang"] = function(entityInfo, ownerInfo)
             if (Options.IO.Deployable.Recon.Enable and Options.IO.Deployable.Recon.RemoteFlashbang) then
-                return {title = "Remote Flashbang", iconInfo = {asset = 202119}}
-            else
-                return false
-            end
-        end,
-        
-        ["SIN Beacon"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Recon.Enable and Options.IO.Deployable.Recon.SINBeacon) then
-                return {title = "SIN Beacon", iconInfo = {asset = 222518}}
-            else
-                return false
-            end
-        end,
-        
-        ["Smokescreen"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Recon.Enable and Options.IO.Deployable.Recon.SmokeScreen) then
-                return {title = "Smoke Screen", iconInfo = {asset = 222519}}
-            else
-                return false
-            end
-        end,
-        
-        ["Teleportal"] = function(entityInfo, ownerInfo)
-            if (Options.IO.Deployable.Recon.Enable and Options.IO.Deployable.Recon.Teleportal) then
-                if (ownerInfo and ownerInfo.name) then
-                    return {title = "Teleportal" .. " - " .. ChatLib.StripArmyTag(ownerInfo.name), iconInfo = {asset = 202115}}
-                else
-                    return {title = "Teleportal", iconInfo = {asset = 202115}}
-                end
+                return {title = "Remote Explosive", iconInfo = {asset = 202119}}
             else
                 return false
             end
@@ -199,24 +130,24 @@ end
 
 function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
     local markerId = tostring(entityId)
-    
+
     if (w_MapMarkers[markerId]) then
         return
     end
-    
+
     Debug.Table("AddMapMarker() " .. tostring(entityId), {title = title, markerType = markerType, iconInfo = iconInfo})
-    
+
     MARKER = MapMarker.Create("bem_" .. markerId)
     w_MapMarkers[markerId] = MARKER
-    
+
     MARKER:BindToEntity(entityId, 100)
     MARKER:SetTitle(title.name)
     MARKER.cMarkerType = markerType
-    
+
     if (title.sub) then
         MARKER:SetSubtitle(title.sub)
     end
-    
+
     if (iconInfo) then
         if (iconInfo.asset) then
             MARKER:GetIcon():SetIcon(iconInfo.asset)
@@ -228,11 +159,11 @@ function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
             MARKER:GetIcon():SetTexture(iconInfo.texture)
         end
     end
-    
+
     MARKER:ShowOnHud(Options.IO.Marker.HUD[markerType])
     MARKER:ShowOnRadar(Options.IO.Marker.Radar[markerType])
     MARKER:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])
-    
+
     if (Options.IO.Marker.Ping[markerType]) then
         MARKER:Ping()
     end
@@ -240,7 +171,7 @@ end
 
 function Tracker.RemoveMapMarker(entityId)
     local markerId = tostring(entityId)
-    
+
     if (w_MapMarkers[markerId]) then
         Debug.Log("RemoveMapMarker()", entityId)
         w_MapMarkers[markerId]:Destroy()
@@ -263,23 +194,23 @@ function Tracker.CheckEntity(entityId)
         return
     elseif (Game.IsTargetAvailable(entityId)) then
         local entityInfo = Game.GetTargetInfo(entityId)
-        
+
         if (not entityInfo) then
             Debug.Log("no entityInfo", entityId)
             return
-        
+
         -- Player character tracking
         elseif (not entityInfo.isNpc and not entityInfo.hostile and entityInfo.name and entityInfo.type and entityInfo.type == "character") then
             if (Options.IO.Debug.Character) then
                 Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
             end
-            
+
             local entityName = ChatLib.StripArmyTag(entityInfo.name)
-            
+
             -- Tracking by name
             if (Options.IO.Character.Name.Enable and Options.IO.Character.Name.List[entityName]) then
                 Tracker.AddMapMarker(entityId, {name = entityName}, "Name", {asset = 159939})
-            
+
             -- Tracking of special characters like developers and mentors
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Developer and entityInfo.isDev) then
                 Tracker.AddMapMarker(entityId, {name = "<Developer> " .. entityName}, "Special", {texture = "icons", region = "r5_logo"})
@@ -289,31 +220,33 @@ function Tracker.CheckEntity(entityId)
                 Tracker.AddMapMarker(entityId, {name = "<Publisher> " .. entityName}, "Special", {texture = "Publisher"})
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Mentor and entityInfo.isMentor) then
                 Tracker.AddMapMarker(entityId, {name = "<Mentor> " .. entityName}, "Special", {texture = "Mentor"})
-            
+            elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Army and entityInfo.army_member) then
+                Tracker.AddMapMarker(entityId, {name = "<Army> " .. entityName}, "Special", {asset = 159939})
+
             -- Tracking by battleframe
             elseif (Options.IO.Character.Frame.Enable and entityInfo.battleframe and Options.IO.Character.Frame["_" .. entityInfo.battleframe] and entityInfo.frame_icon_id  and c_Battleframes[tonumber(entityInfo.frame_icon_id)] and Options.IO.Character.Frame[c_Battleframes[tonumber(entityInfo.frame_icon_id)]]) then
                 Tracker.AddMapMarker(entityId, {name = "<" .. c_Battleframes[tonumber(entityInfo.frame_icon_id)] .. "> " .. entityName}, "Frame")
-            
+
             -- Remove marker if existent
             elseif (w_MapMarkers[tostring(entityId)]) then
                 Tracker.RemoveMapMarker(entityId)
             end
-        
+
         -- Deployable tracking
         elseif (entityInfo and not entityInfo.hostile and entityInfo.deployableType) then
             local markerData = {}
             local ownerInfo = Tracker.GetEntityOwnerInfo(entityId)
-            
+
             -- Player deployables
             if (Options.IO.Deployable.Enable and c_DeployableMarkerData.Player[entityInfo.deployableType] and c_DeployableMarkerData.Player[entityInfo.deployableType](entityInfo, ownerInfo)) then
                 markerData = c_DeployableMarkerData.Player[entityInfo.deployableType](entityInfo, ownerInfo)
                 Tracker.AddMapMarker(entityId, {name = markerData.title}, "Deployable", markerData.iconInfo)
-            
+
             -- Collectible
             elseif (Options.IO.Deployable.Collectible.Enable and c_DeployableMarkerData.Collectible[entityInfo.deployableType] and c_DeployableMarkerData.Collectible[entityInfo.deployableType](entityInfo)) then
                 markerData = c_DeployableMarkerData.Collectible[entityInfo.deployableType](entityInfo)
                 Tracker.AddMapMarker(entityId, {name = markerData.title}, "Collectible", markerData.iconInfo)
-            
+
             -- Remove marker if existent
             elseif (w_MapMarkers[tostring(entityId)]) then
                 Tracker.RemoveMapMarker(entityId)
@@ -331,9 +264,9 @@ function Tracker.CheckAvailableTargets()
     if (not Options.IO.General.Enable) then
         return
     end
-    
+
     local availableTargets = Game.GetAvailableTargets()
-    
+
     for _, entityId in pairs(availableTargets) do
         Tracker.CheckEntity(entityId)
     end
@@ -356,7 +289,7 @@ end
 function Tracker.UpdateMapMarkerVisibility()
     for _, MapMarker in pairs(w_MapMarkers) do
         local markerType = MapMarker.cMarkerType
-        
+
         MapMarker:ShowOnHud(Options.IO.Marker.HUD[markerType])
         MapMarker:ShowOnRadar(Options.IO.Marker.Radar[markerType])
         MapMarker:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])

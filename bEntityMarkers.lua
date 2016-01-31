@@ -4,7 +4,6 @@
 -- =============================================================================
 
 require "math"
-require "string"
 require "table"
 require "unicode"
 require "lib/lib_Callback2"
@@ -29,10 +28,10 @@ end
 
 function LogEntityInfo()
     local reticleInfo = Player.GetReticleInfo()
-    
+
     if (reticleInfo.entityId) then
         local entityInfo = Game.GetTargetInfo(reticleInfo.entityId)
-        
+
         if (entityInfo) then
             log(tostring(entityInfo))
         end
@@ -43,7 +42,7 @@ function OnPlayerMenuShow(playerName, reason)
     if (not namecompare(playerName, Player.GetInfo())) then
         local MENU = PlayerMenu:AddMenu({label = "bEntityMarkers", menu = "bEntityMarkers_menu"})
         local toggleLabel = function(pName) if (Options.IO.Character.Name.List[pName]) then return "Remove from" else return "Add to" end end
-        
+
         MENU:AddButton({label = toggleLabel(playerName) .. " tracking list", id = "bEntityMarkers_toggle"}, function()
             Options.AddRemovePlayerName(playerName)
         end)
@@ -105,8 +104,4 @@ end
 
 function OnPlayerReady()
     Tracker.Setup()
-end
-
-function OnSinCardOp(args)
-    -- TODO: implement surface deposit tracking?
 end
