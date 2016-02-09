@@ -3,11 +3,11 @@
 --    by: BurstBiscuit
 -- =============================================================================
 
-require "lib/lib_InterfaceOptions"
-
 if (Options) then
     return
 end
+
+require "lib/lib_InterfaceOptions"
 
 
 -- =============================================================================
@@ -30,6 +30,13 @@ Options.IO = {
         }
     },
     Marker = {
+        Color = {
+            Name = "FFFFFF",
+            Frame = "FFFFFF",
+            Special = "FFFFFF",
+            Deployable = "FFFFFF",
+            Collectible = "FFFFFF"
+        },
         HUD = {
             Name = true,
             Frame = true,
@@ -50,6 +57,13 @@ Options.IO = {
             Special = false,
             Deployable = false,
             Collectible = false
+        },
+        RadarEdgeMode = {
+            Name = "EDGE_NONE",
+            Frame = "EDGE_NONE",
+            Special = "EDGE_NONE",
+            Deployable = "EDGE_NONE",
+            Collectible = "EDGE_NONE"
         },
         WorldMap = {
             Name = false,
@@ -121,7 +135,8 @@ Options.IO = {
         },
         Collectible = {
             Enable = false,
-            Codex = false
+            Codex = false,
+            RelicCache = false
         }
     }
 }
@@ -154,6 +169,26 @@ local c_OptionsMap = {
 
     DEBUG_DEPLOYABLE_OTHER = function(value)
         Options.IO.Debug.Deployable.Other = value
+    end,
+
+    MARKER_COLOR_NAME = function(value)
+        Options.IO.Marker.Color.Name = value.tint
+    end,
+
+    MARKER_COLOR_SPECIAL = function(value)
+        Options.IO.Marker.Color.Special = value.tint
+    end,
+
+    MARKER_COLOR_FRAME = function(value)
+        Options.IO.Marker.Color.Frame = value.tint
+    end,
+
+    MARKER_COLOR_DEPLOYABLE = function(value)
+        Options.IO.Marker.Color.Deployable = value.tint
+    end,
+
+    MARKER_COLOR_COLLECTIBLE = function(value)
+        Options.IO.Marker.Color.Collectible = value.tint
     end,
 
     MARKER_HUD_NAME = function(value)
@@ -214,6 +249,26 @@ local c_OptionsMap = {
 
     MARKER_RADAR_COLLECTIBLE = function(value)
         Options.IO.Marker.Radar.Collectible = value
+    end,
+
+    MARKER_RADAR_EDGE_NAME = function(value)
+        Options.IO.Marker.RadarEdgeMode.Name = value
+    end,
+
+    MARKER_RADAR_EDGE_SPECIAL = function(value)
+        Options.IO.Marker.RadarEdgeMode.Special = value
+    end,
+
+    MARKER_RADAR_EDGE_FRAME = function(value)
+        Options.IO.Marker.RadarEdgeMode.Frame = value
+    end,
+
+    MARKER_RADAR_EDGE_DEPLOYABLE = function(value)
+        Options.IO.Marker.RadarEdgeMode.Deployable = value
+    end,
+
+    MARKER_RADAR_EDGE_COLLECTIBLE = function(value)
+        Options.IO.Marker.RadarEdgeMode.Collectible = value
     end,
 
     MARKER_WORLDMAP_NAME = function(value)
@@ -406,6 +461,10 @@ local c_OptionsMap = {
 
     DEPLOYABLE_COLLECTIBLE_CODEX = function(value)
         Options.IO.Deployable.Collectible.Codex = value
+    end,
+
+    DEPLOYABLE_COLLECTIBLE_RELIC_CACHE = function(value)
+        Options.IO.Deployable.Collectible.RelicCache = value
     end
 }
 
@@ -453,6 +512,11 @@ function Options.Setup()
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_NAME", label = "Show on HUD", default = true, subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_NAME", label = "Show on radar", default = false, subtab = {"Name Tracking"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_NAME", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Name Tracking"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_NAME", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_NAME", label = "Show on world map", default = false, subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_NAME", label = "Enable ping", default = false, subtab = {"Name Tracking"}})
     InterfaceOptions.StopGroup({subtab = {"Name Tracking"}})
@@ -474,6 +538,11 @@ function Options.Setup()
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_SPECIAL", label = "Show on HUD", default = true, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_SPECIAL", label = "Show on radar", default = false, subtab = {"Special Characters"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_SPECIAL", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Special Characters"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_SPECIAL", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_SPECIAL", label = "Show on world map", default = false, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_SPECIAL", label = "Enable ping", default = false, subtab = {"Special Characters"}})
     InterfaceOptions.StopGroup({subtab = {"Special Characters"}})
@@ -484,6 +553,11 @@ function Options.Setup()
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Battleframes"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_FRAME", label = "Show on HUD", default = true, subtab = {"Battleframes"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_FRAME", label = "Show on radar", default = false, subtab = {"Battleframes"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_FRAME", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Battleframes"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_FRAME", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_FRAME", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_FRAME", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_FRAME", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Battleframes"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_FRAME", label = "Show on world map", default = false, subtab = {"Battleframes"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_FRAME", label = "Enable ping", default = false, subtab = {"Battleframes"}})
     InterfaceOptions.StopGroup({subtab = {"Battleframes"}})
@@ -540,6 +614,11 @@ function Options.Setup()
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_DEPLOYABLE", label = "Show on HUD", default = true, subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_DEPLOYABLE", label = "Show on radar", default = false, subtab = {"Deployables"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Deployables"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_DEPLOYABLE", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_DEPLOYABLE", label = "Show on world map", default = false, subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_DEPLOYABLE", label = "Enable ping", default = false, subtab = {"Deployables"}})
     InterfaceOptions.StopGroup({subtab = {"Deployables"}})
@@ -576,11 +655,17 @@ function Options.Setup()
 
     InterfaceOptions.StartGroup({label = "Tracking Options", subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_CODEX", label = "Codex", default = false, subtab = {"Collectibles"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_COLLECTIBLE_RELIC_CACHE", label = "Relic Cache", default = false, subtab = {"Collectibles"}})
     InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
 
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_HUD_COLLECTIBLE", label = "Show on HUD", default = true, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_COLLECTIBLE", label = "Show on radar", default = false, subtab = {"Collectibles"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Collectibles"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_COLLECTIBLE", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_COLLECTIBLE", label = "Show on world map", default = false, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_COLLECTIBLE", label = "Enable ping", default = false, subtab = {"Collectibles"}})
     InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
@@ -627,7 +712,6 @@ end
 
 function Options.ListPlayerNames()
     local list = {}
-    local names = ""
 
     for k, _ in pairs(Options.IO.Character.Name.List) do
         table.insert(list, k)
@@ -635,14 +719,16 @@ function Options.ListPlayerNames()
 
     table.sort(list, function(a, b) return a < b end)
 
-    for _, v in ipairs(list) do
-        names = names .. " " .. ChatLib.EncodePlayerLink(v)
-    end
+    if (#list > 1 and list[1]) then
+        local names = ChatLib.EncodePlayerLink(list[1])
 
-    if (#list > 0) then
-        local plural = function() if (#list > 2) then return "s" else return "" end end
+        for i = 1, #list do
+            names = names .. ", " .. ChatLib.EncodePlayerLink(list[i])
+        end
 
-        Notification("Currently tracking " .. #list .. " name" .. plural() .. ":" .. names)
+        Notification("Currently tracking " .. tostring(#list) .. " names: " .. names)
+    elseif (#list == 1 and list[1]) then
+        Notification("Currently tracking 1 name: " .. ChatLib.EncodePlayerLink(list[1]))
     else
         Notification("There are no names on the tracking list.")
     end

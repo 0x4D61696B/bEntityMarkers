@@ -3,11 +3,11 @@
 --    by: BurstBiscuit
 -- =============================================================================
 
-require "lib/lib_MapMarker"
-
 if (Tracker) then
     return
 end
+
+require "lib/lib_MapMarker"
 
 
 -- =============================================================================
@@ -108,8 +108,30 @@ local c_DeployableMarkerData = {
             else
                 return false
             end
+        end,
+
+        ["Relic Cache"] = function(entityInfo)
+            if (Options.IO.Deployable.Collectible.RelicCache) then
+                return {title = entityInfo.name, iconInfo = {asset = 323286}}
+            else
+                return false
+            end
+        end,
+
+        ["Large Relic Cache"] = function(entityInfo)
+            if (Options.IO.Deployable.Collectible.RelicCache) then
+                return {title = entityInfo.name, iconInfo = {asset = 323286}}
+            else
+                return false
+            end
         end
     }
+}
+
+local c_RadarEdgeMode = {
+    ["EDGE_ALWAYS"] = MapMarker.EDGE_ALWAYS,
+    ["EDGE_CULLED"] = MapMarker.EDGE_CULLED,
+    ["EDGE_NONE"] = MapMarker.EDGE_NONE
 }
 
 local g_Deployables = {}
@@ -160,6 +182,8 @@ function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
         end
     end
 
+    MARKER:SetRadarEdgeMode(c_RadarEdgeMode[Options.IO.Marker.RadarEdgeMode[markerType]])
+    MARKER:SetThemeColor(Options.IO.Marker.Color[markerType])
     MARKER:ShowOnHud(Options.IO.Marker.HUD[markerType])
     MARKER:ShowOnRadar(Options.IO.Marker.Radar[markerType])
     MARKER:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])
@@ -250,10 +274,10 @@ function Tracker.CheckEntity(entityId)
             -- Remove marker if existent
             elseif (w_MapMarkers[tostring(entityId)]) then
                 Tracker.RemoveMapMarker(entityId)
-            elseif (Options.IO.Debug.Deployable.Owner and ownerInfo) then
+            elseif (Options.IO.Debug.Deployable.Owner and ownerInfo and c_DeployableMarkerData.Collectible[entityInfo.deployableType] == nil) then
                 Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
                 Debug.Table("ownerInfo", ownerInfo)
-            elseif (Options.IO.Debug.Deployable.Other) then
+            elseif (Options.IO.Debug.Deployable.Other and c_DeployableMarkerData.Collectible[entityInfo.deployableType] == nil) then
                 Debug.Table("entityInfo " .. tostring(entityId), {name = entityInfo.name, deployableType = entityInfo.deployableType})
             end
         end
@@ -287,11 +311,13 @@ function Tracker.UpdateDeployableRoster(args)
 end
 
 function Tracker.UpdateMapMarkerVisibility()
-    for _, MapMarker in pairs(w_MapMarkers) do
-        local markerType = MapMarker.cMarkerType
+    for _, MARKER in pairs(w_MapMarkers) do
+        local markerType = MARKER.cMarkerType
 
-        MapMarker:ShowOnHud(Options.IO.Marker.HUD[markerType])
-        MapMarker:ShowOnRadar(Options.IO.Marker.Radar[markerType])
-        MapMarker:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])
+        MARKER:SetRadarEdgeMode(c_RadarEdgeMode[Options.IO.Marker.RadarEdgeMode[markerType]])
+        MARKER:SetThemeColor(Options.IO.Marker.Color[markerType])
+        MARKER:ShowOnHud(Options.IO.Marker.HUD[markerType])
+        MARKER:ShowOnRadar(Options.IO.Marker.Radar[markerType])
+        MARKER:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])
     end
 end
