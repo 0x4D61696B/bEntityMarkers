@@ -8,8 +8,8 @@
     <Info
         title="bEntityMarkers"
         author="BurstBiscuit"
-        description=""
-        url=""
+        description="Allows you to track entities with map markers"
+        url="https://bitbucket.org/0x4D61696B/bentitymarkers"
         uiVersion="1000"
     />
 
