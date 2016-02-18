@@ -722,7 +722,7 @@ function Options.ListPlayerNames()
     if (#list > 1 and list[1]) then
         local names = ChatLib.EncodePlayerLink(list[1])
 
-        for i = 1, #list do
+        for i = 2, #list do
             names = names .. ", " .. ChatLib.EncodePlayerLink(list[i])
         end
 
