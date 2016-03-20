@@ -124,6 +124,7 @@ Options.IO = {
         },
         Engineer = {
             Enable = false,
+            AntiPersonnelTurret = false,
             DeployableShield = false,
             HeavyTurret = false,
             MultiTurret = false,
@@ -431,6 +432,10 @@ local c_OptionsMap = {
         Options.IO.Deployable.Engineer.Enable = value
     end,
 
+    DEPLOYABLE_ENGINEER_ANTIPERSONNELTURRET = function(value)
+        Options.IO.Deployable.Engineer.AntiPersonnelTurret = value
+    end,
+
     DEPLOYABLE_ENGINEER_DEPLOYABLESHIELD = function(value)
         Options.IO.Deployable.Engineer.DeployableShield = value
     end,
@@ -634,6 +639,7 @@ function Options.Setup()
     InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_ENGINEER_GROUP", label = "Track Engineer Deployables", default = false, subtab = {"Deployables", "Engineer"}})
 
     InterfaceOptions.StartGroup({label = "Engineer", subtab = {"Deployables", "Engineer"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_ENGINEER_ANTIPERSONNELTURRET", label = "Anti-Personnel Turret", default = false, subtab = {"Deployables", "Engineer"}})
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_ENGINEER_DEPLOYABLESHIELD", label = "Deployable Shield", default = false, subtab = {"Deployables", "Engineer"}})
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_ENGINEER_HEAVYTURRET", label = "Heavy Turret", default = false, subtab = {"Deployables", "Engineer"}})
         InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_ENGINEER_SUPPLYSTATION", label = "Supply Station", default = false, subtab = {"Deployables", "Engineer"}})
