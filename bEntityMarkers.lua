@@ -6,6 +6,7 @@
 require "math"
 require "table"
 require "unicode"
+
 require "lib/lib_Callback2"
 require "lib/lib_ChatLib"
 require "lib/lib_Debug"
@@ -26,18 +27,6 @@ function Notification(message)
     ChatLib.Notification({text = "[bEntityMarkers] " .. tostring(message)})
 end
 
-function LogEntityInfo()
-    local reticleInfo = Player.GetReticleInfo()
-
-    if (reticleInfo.entityId) then
-        local entityInfo = Game.GetTargetInfo(reticleInfo.entityId)
-
-        if (entityInfo) then
-            log(tostring(entityInfo))
-        end
-    end
-end
-
 function OnPlayerMenuShow(playerName, reason)
     if (not namecompare(playerName, Player.GetInfo())) then
         local MENU = PlayerMenu:AddMenu({label = "bEntityMarkers", menu = "bEntityMarkers_menu"})
@@ -50,11 +39,11 @@ function OnPlayerMenuShow(playerName, reason)
 end
 
 function OnSlashCommand(args)
+    Debug.Table("OnSlashCommand()", args)
+
     if (args[1]) then
         if (args[1] == "-clear") then
             Options.ClearPlayerNames()
-        elseif (args[1] == "-info") then
-            LogEntityInfo()
         elseif (args[1] == "-list") then
             Options.ListPlayerNames()
         elseif (unicode.len(args[1]) > 0) then
@@ -86,8 +75,9 @@ function OnEnterExitZone()
 end
 
 function OnDeployableRosterUpdate(args)
+    Debug.Event(args)
+
     if (args.entityId) then
-        Debug.Log("OnDeployableRosterUpdate()", args)
         Tracker.UpdateDeployableRoster(args)
     end
 end
