@@ -698,8 +698,10 @@ function Options.AddRemovePlayerName(name)
         Notification("Removing " .. ChatLib.EncodePlayerLink(playerName) .. " from the tracking list")
         Options.IO.Character.Name.List[playerName] = nil
         Tracker.CheckAvailableTargets()
+
     elseif (namecompare(playerName, Player.GetInfo())) then
         Notification("You can't add yourself to the tracking list")
+
     else
         Notification("Adding " .. ChatLib.EncodePlayerLink(playerName) .. " to the tracking list")
         Options.IO.Character.Name.List[playerName] = true
@@ -717,24 +719,22 @@ function Options.ClearPlayerNames()
 end
 
 function Options.ListPlayerNames()
-    local list = {}
+    local nameList = {}
 
-    for k, _ in pairs(Options.IO.Character.Name.List) do
-        table.insert(list, k)
+    for name in pairs(Options.IO.Character.Name.List) do
+        table.insert(nameList, name)
     end
 
-    table.sort(list, function(a, b) return a < b end)
+    table.sort(nameList, function(a, b) return a < b end)
 
-    if (#list > 1 and list[1]) then
-        local names = ChatLib.EncodePlayerLink(list[1])
+    if (#nameList > 0) then
+        local nameString = ""
 
-        for i = 2, #list do
-            names = names .. ", " .. ChatLib.EncodePlayerLink(list[i])
+        for i = 1, #nameList do
+            nameString = nameString .. ChatLib.EncodePlayerLink(nameList[i]) .. (nameList[i + 1] and ", " or "")
         end
 
-        Notification("Currently tracking " .. tostring(#list) .. " names: " .. names)
-    elseif (#list == 1 and list[1]) then
-        Notification("Currently tracking 1 name: " .. ChatLib.EncodePlayerLink(list[1]))
+        Notification("Currently tracking " .. tostring(#nameList) .. " name" .. (#nameList > 1 and "s" or "") .. ": " .. nameString)
     else
         Notification("There are no names on the tracking list.")
     end

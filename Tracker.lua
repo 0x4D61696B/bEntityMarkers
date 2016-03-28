@@ -79,16 +79,6 @@ local c_DeployableMarkerData = {
         end
     end,
 
-    --[[ Do I even care about rank 2?
-    ["Heavy Turret - Rank II"] = function(entityInfo)
-        if (Options.IO.Deployable.Enable and Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.HeavyTurret) then
-            return {title = "Heavy Turret", markerType = "Deployable", iconInfo = {asset = 222499}}
-        else
-            return false
-        end
-    end,
-    ]]
-
     [4359] = function(entityInfo) -- Multi Turret
         if (Options.IO.Deployable.Enable and Options.IO.Deployable.Engineer.Enable and Options.IO.Deployable.Engineer.MultiTurret) then
             return {title = entityInfo.name, markerType = "Deployable", iconInfo = {asset = 222505}}
@@ -142,7 +132,7 @@ local c_DeployableMarkerData = {
     end,
 
     -- --------------------------------------------------
-    --  Objectives
+    --  TODO: Objectives
     -- --------------------------------------------------
 }
 
@@ -164,8 +154,8 @@ local w_MapMarkers = {}
 -- =============================================================================
 
 function Tracker.Setup()
-    g_PlayerTargetId = Player.GetTargetId()
-    g_PlayerTargetInfo = Game.GetTargetInfo(g_PlayerTargetId)
+    g_PlayerTargetId    = Player.GetTargetId()
+    g_PlayerTargetInfo  = Game.GetTargetInfo(g_PlayerTargetId)
 end
 
 function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
@@ -191,10 +181,13 @@ function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
     if (iconInfo) then
         if (iconInfo.asset) then
             MARKER:GetIcon():SetIcon(iconInfo.asset)
+
         elseif (iconInfo.url) then
             MARKER:GetIcon():SetUrl(iconInfo.url)
+
         elseif (iconInfo.texture and iconInfo.region) then
             MARKER:GetIcon():SetTexture(iconInfo.texture, iconInfo.region)
+
         elseif (iconInfo.texture) then
             MARKER:GetIcon():SetTexture(iconInfo.texture)
         end
@@ -224,8 +217,10 @@ end
 function Tracker.GetEntityOwnerInfo(entityId, entityInfo)
     if (g_Deployables[tostring(entityId)]) then
         return g_PlayerTargetInfo
+
     elseif (entityInfo and entityInfo.ownerId and Game.IsTargetAvailable(entityInfo.ownerId)) then
         return Game.GetTargetInfo(entityInfo.ownerId)
+
     else
         return false
     end
@@ -234,6 +229,7 @@ end
 function Tracker.CheckEntity(entityId)
     if (not Options.IO.General.Enable or entityId == g_PlayerTargetId) then
         return
+
     elseif (Game.IsTargetAvailable(entityId)) then
         local entityInfo = Game.GetTargetInfo(entityId)
 
@@ -256,12 +252,16 @@ function Tracker.CheckEntity(entityId)
             -- Tracking of special characters like developers and mentors
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Developer and entityInfo.isDev) then
                 Tracker.AddMapMarker(entityId, {name = "<Developer> " .. entityName}, "Special", {texture = "icons", region = "r5_logo"})
+
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Ranger and entityInfo.isRanger) then
                 Tracker.AddMapMarker(entityId, {name = "<Ranger> " .. entityName}, "Special", {texture = "Ranger"})
+
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Publisher and entityInfo.isPublisher) then
                 Tracker.AddMapMarker(entityId, {name = "<Publisher> " .. entityName}, "Special", {texture = "Publisher"})
+
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Mentor and entityInfo.isMentor) then
                 Tracker.AddMapMarker(entityId, {name = "<Mentor> " .. entityName}, "Special", {texture = "Mentor"})
+
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Army and entityInfo.army_member) then
                 Tracker.AddMapMarker(entityId, {name = "<Army> " .. entityName}, "Special", {asset = 159939})
 
@@ -291,6 +291,7 @@ function Tracker.CheckEntity(entityId)
             elseif (Options.IO.Debug.Deployable.Owner and ownerInfo and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] == nil) then
                 Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
                 Debug.Table("ownerInfo", ownerInfo)
+
             elseif (Options.IO.Debug.Deployable.Other and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] == nil) then
                 Debug.Table("entityInfo " .. tostring(entityId), {name = entityInfo.name, deployableType = entityInfo.deployableType, deployableTypeId = entityInfo.deployableTypeId})
             end
@@ -319,6 +320,7 @@ end
 function Tracker.UpdateDeployableRoster(args)
     if (args.tracking) then
         g_Deployables[tostring(args.entityId)] = true
+
     elseif (g_Deployables[tostring(args.entityId)]) then
         g_Deployables[tostring(args.entityId)] = nil
     end

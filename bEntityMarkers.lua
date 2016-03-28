@@ -27,12 +27,11 @@ function Notification(message)
     ChatLib.Notification({text = "[bEntityMarkers] " .. tostring(message)})
 end
 
-function OnPlayerMenuShow(playerName, reason)
+function OnPlayerMenuShow(playerName)
     if (not namecompare(playerName, Player.GetInfo())) then
         local MENU = PlayerMenu:AddMenu({label = "bEntityMarkers", menu = "bEntityMarkers_menu"})
-        local toggleLabel = function(pName) if (Options.IO.Character.Name.List[pName]) then return "Remove from" else return "Add to" end end
 
-        MENU:AddButton({label = toggleLabel(playerName) .. " tracking list", id = "bEntityMarkers_toggle"}, function()
+        MENU:AddButton({label = (Options.IO.Character.Name.List[ChatLib.StripArmyTag(playerName)] and "Remove from" or "Add to") .. " tracking list", id = "bEntityMarkers_toggle"}, function()
             Options.AddRemovePlayerName(playerName)
         end)
     end
@@ -44,8 +43,10 @@ function OnSlashCommand(args)
     if (args[1]) then
         if (args[1] == "-clear") then
             Options.ClearPlayerNames()
+
         elseif (args[1] == "-list") then
             Options.ListPlayerNames()
+
         elseif (unicode.len(args[1]) > 0) then
             Options.AddRemovePlayerName(args[1])
         end
@@ -66,7 +67,9 @@ function OnComponentLoad()
         func = OnSlashCommand,
         autocomplete_name = 1
     })
+
     Options.Setup()
+
     PlayerMenu.BindOnShow(OnPlayerMenuShow)
 end
 

@@ -14,13 +14,13 @@
     />
 
     <Events>
-        <Event name="ON_COMPONENT_LOAD"             bind="OnComponentLoad" />
+        <Event name="ON_COMPONENT_LOAD"             bind="OnComponentLoad"          />
         <Event name="ON_DEPLOYABLE_ROSTER_UPDATE"   bind="OnDeployableRosterUpdate" />
-        <Event name="ON_ENTER_ZONE"                 bind="OnEnterExitZone" />
-        <Event name="ON_EXIT_ZONE"                  bind="OnEnterExitZone" />
-        <Event name="ON_PLAYER_READY"               bind="OnPlayerReady" />
-        <Event name="ON_UI_ENTITY_AVAILABLE"        bind="OnEntityAvailable" />
-        <Event name="ON_UI_ENTITY_LOST"             bind="OnEntityLost" />
+        <Event name="ON_ENTER_ZONE"                 bind="OnEnterExitZone"          />
+        <Event name="ON_EXIT_ZONE"                  bind="OnEnterExitZone"          />
+        <Event name="ON_PLAYER_READY"               bind="OnPlayerReady"            />
+        <Event name="ON_UI_ENTITY_AVAILABLE"        bind="OnEntityAvailable"        />
+        <Event name="ON_UI_ENTITY_LOST"             bind="OnEntityLost"             />
     </Events>
 
     <Textures>
