@@ -104,9 +104,11 @@ local c_DeployableMarkerData = {
         end
     end,
 
+
     -- --------------------------------------------------
     --  Collectibles
     -- --------------------------------------------------
+
     [3858] = function(entityInfo) -- Codex
         if (Options.IO.Deployable.Collectible.Enable and Options.IO.Deployable.Collectible.Codex) then
             return {title = entityInfo.name, markerType = "Collectible", iconInfo = {asset = 323286}}
@@ -131,22 +133,222 @@ local c_DeployableMarkerData = {
         end
     end,
 
+
     -- --------------------------------------------------
     --  TODO: Objectives
     -- --------------------------------------------------
+
+    [948] = function(entityInfo) -- Chosen Strifebringer
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.ChosenStrifebringer) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [961] = function(entityInfo) -- Armored Aranha Nest
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.ArmoredAranhaNest) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [964] = function(entityInfo) -- Hijacked Terminal
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.HijackedTerminal) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1000] = function(entityInfo) -- Chosen Bomb
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.ChosenBomb) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1005] = function(entityInfo) -- Raider Distress Beacon
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.RaiderDistressBeacon) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1015] = function(entityInfo) -- Arcporter Pylon
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.ArcporterPylon) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1023] = function(entityInfo) -- Accord Terminal
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.AccordTerminal) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1052] = function(entityInfo) -- Intact Drill
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.RecoveryPayloadStorage) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1121] = function(entityInfo) -- Tainted Crystite Storage
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.RecoveryPayloadStorage) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1122] = function(entityInfo) -- Crystite Core Storage
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.RecoveryPayloadStorage) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    [1123] = function(entityInfo) -- Medical Supply Storage
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.RecoveryPayloadStorage) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end
+}
+
+local c_NameMarkerData = {
+    -- --------------------------------------------------
+    --  TODO: Objectives
+    -- --------------------------------------------------
+
+    ["Accord Datapad"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.AccordDatapad) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Crashed Thumper Part"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.CrashedThumperPart) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Delirium Engine Core"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DeliriumEngineCore) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    -- Chosen Bomb
+    ["Disruption Defuse Pin Black"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Black Resonator"] = function(entityInfo) -- PTS 1.7
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Disruption Defuse Pin Red"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Red Resonator"] = function(entityInfo) -- PTS 1.7
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Disruption Defuse Pin White"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["White Resonator"] = function(entityInfo) -- PTS 1.7
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DisruptionDefusePin) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    -- Recovery Payload
+    ["Crystite Core"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.CrystiteCore) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Drill Parts"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.DrillParts) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Medical Supplies"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.MedicalSupplies) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end,
+
+    ["Tainted Crystite"] = function(entityInfo)
+        if (Options.IO.Deployable.Objective.Enable and Options.IO.Deployable.Objective.TaintedCrystite) then
+            return {title = entityInfo.name, markerType = "Objective", iconInfo = {asset = 323286}}
+        else
+            return false
+        end
+    end
 }
 
 local c_RadarEdgeMode = {
     ["EDGE_ALWAYS"] = MapMarker.EDGE_ALWAYS,
     ["EDGE_CULLED"] = MapMarker.EDGE_CULLED,
-    ["EDGE_NONE"] = MapMarker.EDGE_NONE
+    ["EDGE_NONE"]   = MapMarker.EDGE_NONE
 }
 
-local g_Deployables = {}
-local g_PlayerTargetId = -1
-local g_PlayerTargetInfo = false
+local g_Deployables     = {}
+local g_PlayerTargetId  = -1
 
-local w_MapMarkers = {}
+local w_MapMarkers      = {}
 
 
 -- =============================================================================
@@ -154,8 +356,7 @@ local w_MapMarkers = {}
 -- =============================================================================
 
 function Tracker.Setup()
-    g_PlayerTargetId    = Player.GetTargetId()
-    g_PlayerTargetInfo  = Game.GetTargetInfo(g_PlayerTargetId)
+    g_PlayerTargetId = Player.GetTargetId()
 end
 
 function Tracker.AddMapMarker(entityId, title, markerType, iconInfo)
@@ -214,18 +415,6 @@ function Tracker.RemoveMapMarker(entityId)
     end
 end
 
-function Tracker.GetEntityOwnerInfo(entityId, entityInfo)
-    if (g_Deployables[tostring(entityId)]) then
-        return g_PlayerTargetInfo
-
-    elseif (entityInfo and entityInfo.ownerId and Game.IsTargetAvailable(entityInfo.ownerId)) then
-        return Game.GetTargetInfo(entityInfo.ownerId)
-
-    else
-        return false
-    end
-end
-
 function Tracker.CheckEntity(entityId)
     if (not Options.IO.General.Enable or entityId == g_PlayerTargetId) then
         return
@@ -233,16 +422,13 @@ function Tracker.CheckEntity(entityId)
     elseif (Game.IsTargetAvailable(entityId)) then
         local entityInfo = Game.GetTargetInfo(entityId)
 
-        if (not entityInfo) then
-            Debug.Warn("No entityInfo:", entityId)
+        -- Abort if there is no entityInfo or entityInfo.type
+        if (not entityInfo or not entityInfo.type) then
+            Debug.Warn("No entityInfo or entityInfo.type:", entityId)
             return
 
         -- Player character tracking
-        elseif (not entityInfo.isNpc and not entityInfo.hostile and entityInfo.name and entityInfo.type and entityInfo.type == "character") then
-            if (Options.IO.Debug.Character) then
-                Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
-            end
-
+        elseif (entityInfo.type == "character" and not entityInfo.isNpc and entityInfo.name) then
             local entityName = ChatLib.StripArmyTag(entityInfo.name)
 
             -- Tracking by name
@@ -270,31 +456,36 @@ function Tracker.CheckEntity(entityId)
                 Tracker.AddMapMarker(entityId, {name = "<" .. c_Battleframes[tonumber(entityInfo.frame_icon_id)] .. "> " .. entityName}, "Frame")
 
             -- Remove marker if existent
-            elseif (w_MapMarkers[tostring(entityId)]) then
+            else
                 Tracker.RemoveMapMarker(entityId)
             end
 
         -- Deployable tracking
-        elseif (entityInfo and not entityInfo.hostile and entityInfo.deployableTypeId) then
-            local markerData = {}
-            local ownerInfo = Tracker.GetEntityOwnerInfo(entityId)
+        elseif (entityInfo.type == "deployable" and entityInfo.deployableTypeId) then
 
-            if (Options.IO.Deployable.Enable and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)](entityInfo)) then
-                markerData = c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)](entityInfo)
+            -- Check if there is an entry defined for this deployableTypeId and if it is enabled
+            if (c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)](entityInfo)) then
+                local markerData = c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)](entityInfo)
                 Tracker.AddMapMarker(entityId, {name = markerData.title}, markerData.markerType, markerData.iconInfo)
 
             -- Remove marker if existent
-            elseif (w_MapMarkers[tostring(entityId)]) then
+            else
                 Tracker.RemoveMapMarker(entityId)
-
-            -- Log to console if debug mode is active
-            elseif (Options.IO.Debug.Deployable.Owner and ownerInfo and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] == nil) then
-                Debug.Table("entityInfo " .. tostring(entityId), entityInfo)
-                Debug.Table("ownerInfo", ownerInfo)
-
-            elseif (Options.IO.Debug.Deployable.Other and c_DeployableMarkerData[tonumber(entityInfo.deployableTypeId)] == nil) then
-                Debug.Table("entityInfo " .. tostring(entityId), {name = entityInfo.name, deployableType = entityInfo.deployableType, deployableTypeId = entityInfo.deployableTypeId})
             end
+
+        -- Tracking by name for "unknown" type of entities, such as Datapads in ARES missions
+        elseif (entityInfo.type == "unknown" and entityInfo.name) then
+
+            -- Check if there is an entry defined for this name and if it is enabled
+            if (c_NameMarkerData[entityInfo.name] and c_NameMarkerData[entityInfo.name](entityInfo)) then
+                local markerData = c_NameMarkerData[entityInfo.name](entityInfo)
+                Tracker.AddMapMarker(entityId, {name = markerData.title}, markerData.markerType, markerData.iconInfo)
+
+            -- Remove marker if existent
+            else
+                Tracker.RemoveMapMarker(entityId)
+            end
+
         end
     end
 end

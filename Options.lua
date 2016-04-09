@@ -18,126 +18,168 @@ Options = {}
 
 Options.IO = {
     General = {
-        Enable = false,
-        TrackingDelay = 0.0
+        Enable          = false,
+        TrackingDelay   = 0.0,
+        Debug           = false
     },
-    Debug = {
-        Enable = false,
-        Character = false,
-        Deployable = {
-            Owner = false,
-            Other = false
-        }
-    },
+
     Marker = {
         Color = {
-            Name = "FFFFFF",
-            Frame = "FFFFFF",
-            Special = "FFFFFF",
-            Deployable = "FFFFFF",
-            Collectible = "FFFFFF"
+            Name        = "F7BA0B",
+            Frame       = "FFFFFF",
+            Special     = "A02128",
+            Deployable  = "0F8558",
+            Collectible = "154889",
+            Objective   = "154889"
         },
+
         HUD = {
-            Name = true,
-            Frame = true,
-            Special = true,
-            Deployable = true,
-            Collectible = true
+            Name        = true,
+            Frame       = true,
+            Special     = true,
+            Deployable  = true,
+            Collectible = true,
+            Objective   = true
         },
+
         Ping = {
-            Name = false,
-            Frame = false,
-            Special = false,
-            Deployable = false,
-            Collectible = false
+            Name        = false,
+            Frame       = false,
+            Special     = false,
+            Deployable  = false,
+            Collectible = false,
+            Objective   = false
         },
+
         Radar = {
-            Name = false,
-            Frame = false,
-            Special = false,
-            Deployable = false,
-            Collectible = false
+            Name        = false,
+            Frame       = false,
+            Special     = false,
+            Deployable  = false,
+            Collectible = false,
+            Objective   = false
         },
+
         RadarEdgeMode = {
-            Name = "EDGE_NONE",
-            Frame = "EDGE_NONE",
-            Special = "EDGE_NONE",
-            Deployable = "EDGE_NONE",
-            Collectible = "EDGE_NONE"
+            Name        = "EDGE_NONE",
+            Frame       = "EDGE_NONE",
+            Special     = "EDGE_NONE",
+            Deployable  = "EDGE_NONE",
+            Collectible = "EDGE_NONE",
+            Objective   = "EDGE_NONE"
         },
+
         WorldMap = {
-            Name = false,
-            Frame = false,
-            Special = false,
-            Deployable = false,
-            Collectible = false
+            Name        = false,
+            Frame       = false,
+            Special     = false,
+            Deployable  = false,
+            Collectible = false,
+            Objective   = false
         }
     },
+
     Character = {
         Name = {
-            Enable = false,
-            List = {}
+            Enable      = false,
+            List        = {}
         },
+
         Special = {
-            Enable = false,
-            Developer = false,
-            Ranger = false,
-            Publisher = false,
-            Mentor = false,
-            Army = false
+            Enable      = false,
+            Developer   = false,
+            Ranger      = false,
+            Publisher   = false,
+            Mentor      = false,
+            Army        = false
         },
+
         Frame = {
-            Enable = false,
+            Enable      = false,
+
             -- Assault
-            _berzerker = false,
-            Assault = false,
-            Firecat = false,
-            Tigerclaw = false,
+            _berzerker  = false,
+            Assault     = false,
+            Firecat     = false,
+            Tigerclaw   = false,
+
             -- Biotech
-            _medic = false,
-            Biotech = false,
-            Dragonfly = false,
-            Recluse = false,
+            _medic      = false,
+            Biotech     = false,
+            Dragonfly   = false,
+            Recluse     = false,
+
             -- Dreadnaught
-            _guardian = false,
+            _guardian   = false,
             Dreadnaught = false,
-            Arsenal = false,
-            Mammoth = false,
-            Rhino = false,
+            Arsenal     = false,
+            Mammoth     = false,
+            Rhino       = false,
+
             -- Engineer
-            _bunker = false,
-            Engineer = false,
-            Bastion = false,
-            Electron = false,
+            _bunker     = false,
+            Engineer    = false,
+            Bastion     = false,
+            Electron    = false,
+
             -- Recon
-            _recon = false,
-            Recon = false,
-            Nighthawk = false,
-            Raptor = false
+            _recon      = false,
+            Recon       = false,
+            Nighthawk   = false,
+            Raptor      = false
         }
     },
+
     Deployable = {
-        Enable = false,
+        Enable                          = false,
+
         Biotech = {
-            Enable = false,
-            HealingGenerator = false
+            Enable                      = false,
+            HealingGenerator            = false
         },
+
         Engineer = {
             Enable = false,
-            AntiPersonnelTurret = false,
-            DeployableShield = false,
-            HeavyTurret = false,
-            MultiTurret = false,
-            SupplyStation = false
+            AntiPersonnelTurret         = false,
+            DeployableShield            = false,
+            HeavyTurret                 = false,
+            MultiTurret                 = false,
+            SupplyStation               = false
         },
+
         Recon = {
-            Enable = false,
-            RemoteFlashbang = false
+            Enable                      = false,
+            RemoteFlashbang             = false
         },
+
         Collectible = {
-            Enable = false,
-            Codex = false,
-            RelicCache = false
+            Enable                      = false,
+            Codex                       = false,
+            RelicCache                  = false
+        },
+
+        Objective = {
+            Enable                      = false,
+
+            -- Objectives by deployableTypeId
+            AccordTerminal              = false,
+            ArcporterPylon              = false,
+            ArmoredAranhaNest           = false,
+            ChosenBomb                  = false,
+            ChosenStrifebringer         = false,
+            HijackedTerminal            = false,
+            RaiderDistressBeacon        = false,
+            RecoveryPayloadStorage      = false,
+
+            -- Objectives by entityInfo.name
+            AccordDatapad               = false,
+            CrashedThumperPart          = false,
+            CrystiteCore                = false,
+            DeliriumEngineCore          = false,
+            DisruptionDefusePin         = false,
+            DrillParts                  = false,
+            MedicalSupplies             = false,
+            TaintedCrystite             = false
         }
     }
 }
@@ -155,21 +197,9 @@ local c_OptionsMap = {
         Options.IO.General.TrackingDelay = value
     end,
 
-    DEBUG_GROUP = function(value)
-        Options.IO.Debug.Enable = value
+    GENERAL_DEBUG = function(value)
+        Options.IO.General.Debug = value
         Debug.EnableLogging(value)
-    end,
-
-    DEBUG_CHARACTER = function(value)
-        Options.IO.Debug.Character = value
-    end,
-
-    DEBUG_DEPLOYABLE_OWNER = function(value)
-        Options.IO.Debug.Deployable.Owner = value
-    end,
-
-    DEBUG_DEPLOYABLE_OTHER = function(value)
-        Options.IO.Debug.Deployable.Other = value
     end,
 
     MARKER_COLOR_NAME = function(value)
@@ -192,6 +222,10 @@ local c_OptionsMap = {
         Options.IO.Marker.Color.Collectible = value.tint
     end,
 
+    MARKER_COLOR_OBJECTIVE = function(value)
+        Options.IO.Marker.Color.Objective = value.tint
+    end,
+
     MARKER_HUD_NAME = function(value)
         Options.IO.Marker.HUD.Name = value
     end,
@@ -210,6 +244,10 @@ local c_OptionsMap = {
 
     MARKER_HUD_COLLECTIBLE = function(value)
         Options.IO.Marker.HUD.Collectible = value
+    end,
+
+    MARKER_HUD_OBJECTIVE = function(value)
+        Options.IO.Marker.HUD.Objective = value
     end,
 
     MARKER_PING_NAME = function(value)
@@ -232,6 +270,10 @@ local c_OptionsMap = {
         Options.IO.Marker.Ping.Collectible = value
     end,
 
+    MARKER_PING_OBJECTIVE = function(value)
+        Options.IO.Marker.Ping.Objective = value
+    end,
+
     MARKER_RADAR_NAME = function(value)
         Options.IO.Marker.Radar.Name = value
     end,
@@ -250,6 +292,10 @@ local c_OptionsMap = {
 
     MARKER_RADAR_COLLECTIBLE = function(value)
         Options.IO.Marker.Radar.Collectible = value
+    end,
+
+    MARKER_RADAR_OBJECTIVE = function(value)
+        Options.IO.Marker.Radar.Objective = value
     end,
 
     MARKER_RADAR_EDGE_NAME = function(value)
@@ -272,6 +318,10 @@ local c_OptionsMap = {
         Options.IO.Marker.RadarEdgeMode.Collectible = value
     end,
 
+    MARKER_RADAR_EDGE_OBJECTIVE = function(value)
+        Options.IO.Marker.RadarEdgeMode.Objective = value
+    end,
+
     MARKER_WORLDMAP_NAME = function(value)
         Options.IO.Marker.WorldMap.Name = value
     end,
@@ -290,6 +340,10 @@ local c_OptionsMap = {
 
     MARKER_WORLDMAP_COLLECTIBLE = function(value)
         Options.IO.Marker.WorldMap.Collectible = value
+    end,
+
+    MARKER_WORLDMAP_OBJECTIVE = function(value)
+        Options.IO.Marker.WorldMap.Objective = value
     end,
 
     CHARACTER_NAME = function (value)
@@ -470,6 +524,74 @@ local c_OptionsMap = {
 
     DEPLOYABLE_COLLECTIBLE_RELIC_CACHE = function(value)
         Options.IO.Deployable.Collectible.RelicCache = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_GROUP = function(value)
+        Options.IO.Deployable.Objective.Enable = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_ACCORDTERMINAL = function(value)
+        Options.IO.Deployable.Objective.AccordTerminal = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_ARCPORTERPYLON = function(value)
+        Options.IO.Deployable.Objective.ArcporterPylon = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_ARMOREDARANHANEST = function(value)
+        Options.IO.Deployable.Objective.ArmoredAranhaNest = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_CHOSENBOMB = function(value)
+        Options.IO.Deployable.Objective.ChosenBomb = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_CHOSENSTRIFEBRINGER = function(value)
+        Options.IO.Deployable.Objective.ChosenStrifebringer = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_HIJACKEDTERMINAL = function(value)
+        Options.IO.Deployable.Objective.HijackedTerminal = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_RAIDERDISTRESSBEACON = function(value)
+        Options.IO.Deployable.Objective.RaiderDistressBeacon = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_RECOVERYPAYLOADSTORAGE = function(value)
+        Options.IO.Deployable.Objective.RecoveryPayloadStorage = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_ACCORDDATAPAD = function(value)
+        Options.IO.Deployable.Objective.AccordDatapad = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_CRASHEDTHUMPERPART = function(value)
+        Options.IO.Deployable.Objective.CrashedThumperPart = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_DELIRIUMENGINECORE = function(value)
+        Options.IO.Deployable.Objective.DeliriumEngineCore = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_DISRUPTIONDEFUSEPIN = function(value)
+        Options.IO.Deployable.Objective.DisruptionDefusePin = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_CRYSTITECORE = function(value)
+        Options.IO.Deployable.Objective.CrystiteCore = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_DRILLPARTS = function(value)
+        Options.IO.Deployable.Objective.DrillParts = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_MEDICALSUPPLIES = function(value)
+        Options.IO.Deployable.Objective.MedicalSupplies = value
+    end,
+
+    DEPLOYABLE_OBJECTIVE_TAINTEDCRYSTITE = function(value)
+        Options.IO.Deployable.Objective.TaintedCrystite = value
     end
 }
 
@@ -496,19 +618,13 @@ function Options.OnOptionChanged(id, value)
 end
 
 function Options.Setup()
-    InterfaceOptions.SaveVersion(4)
+    InterfaceOptions.SaveVersion(5)
 
     -- General options
     InterfaceOptions.StartGroup({label = "General options"})
         InterfaceOptions.AddCheckBox({id = "GENERAL_ENABLE", label = "Addon enabled", default = false})
         InterfaceOptions.AddSlider({id = "GENERAL_TRACKING_DELAY", label = "Tracking Delay", default = 0.0, min = 0.0, max = 1.0, inc = 0.1, format = "%0.1f", suffix = "s"})
-    InterfaceOptions.StopGroup()
-
-    -- Debug options
-    InterfaceOptions.StartGroup({label = "Debug", id = "DEBUG_GROUP", checkbox = true, default = false})
-        InterfaceOptions.AddCheckBox({id = "DEBUG_CHARACTER", label = "Characters", default = false})
-        InterfaceOptions.AddCheckBox({id = "DEBUG_DEPLOYABLE_OWNER", label = "Deployables with owner info", default = false})
-        InterfaceOptions.AddCheckBox({id = "DEBUG_DEPLOYABLE_OTHER", label = "Other deployables", default = false})
+        InterfaceOptions.AddCheckBox({id = "GENERAL_DEBUG", label = "Debug enabled", default = false})
     InterfaceOptions.StopGroup()
 
     -- Name tracking
@@ -521,7 +637,7 @@ function Options.Setup()
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Always show", val = "EDGE_ALWAYS"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Replace by an arrow", val = "EDGE_CULLED"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_NAME", label = "Never show", val = "EDGE_NONE"})
-        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_NAME", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Name Tracking"}})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_NAME", label = "Radar marker color", default = {tint = "F7BA0B"}, subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_NAME", label = "Show on world map", default = false, subtab = {"Name Tracking"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_NAME", label = "Enable ping", default = false, subtab = {"Name Tracking"}})
     InterfaceOptions.StopGroup({subtab = {"Name Tracking"}})
@@ -547,7 +663,7 @@ function Options.Setup()
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Always show", val = "EDGE_ALWAYS"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Replace by an arrow", val = "EDGE_CULLED"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_SPECIAL", label = "Never show", val = "EDGE_NONE"})
-        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_SPECIAL", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Special Characters"}})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_SPECIAL", label = "Radar marker color", default = {tint = "A02128"}, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_SPECIAL", label = "Show on world map", default = false, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_SPECIAL", label = "Enable ping", default = false, subtab = {"Special Characters"}})
     InterfaceOptions.StopGroup({subtab = {"Special Characters"}})
@@ -623,7 +739,7 @@ function Options.Setup()
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Always show", val = "EDGE_ALWAYS"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Replace by an arrow", val = "EDGE_CULLED"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_DEPLOYABLE", label = "Never show", val = "EDGE_NONE"})
-        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_DEPLOYABLE", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Deployables"}})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_DEPLOYABLE", label = "Radar marker color", default = {tint = "0F8558"}, subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_DEPLOYABLE", label = "Show on world map", default = false, subtab = {"Deployables"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_DEPLOYABLE", label = "Enable ping", default = false, subtab = {"Deployables"}})
     InterfaceOptions.StopGroup({subtab = {"Deployables"}})
@@ -671,10 +787,56 @@ function Options.Setup()
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Always show", val = "EDGE_ALWAYS"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Replace by an arrow", val = "EDGE_CULLED"})
             InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_COLLECTIBLE", label = "Never show", val = "EDGE_NONE"})
-        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_COLLECTIBLE", label = "Radar marker color", default = {tint = "FFFFFF"}, subtab = {"Collectibles"}})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_COLLECTIBLE", label = "Radar marker color", default = {tint = "154889"}, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_COLLECTIBLE", label = "Show on world map", default = false, subtab = {"Collectibles"}})
         InterfaceOptions.AddCheckBox({id = "MARKER_PING_COLLECTIBLE", label = "Enable ping", default = false, subtab = {"Collectibles"}})
     InterfaceOptions.StopGroup({subtab = {"Collectibles"}})
+
+    -- Objectives
+    InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_GROUP", label = "Track Objectives", default = false, subtab = {"Objectives"}})
+
+    InterfaceOptions.StartGroup({label = "Miscellanous", subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_CRASHEDTHUMPERPART", label = "Crashed Thumper Part", default = false, subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_DELIRIUMENGINECORE", label = "Delirium Engine Core", default = false, subtab = {"Objectives"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives"}})
+
+    InterfaceOptions.StartGroup({label = "Miscellanous", subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_ARCPORTERPYLON", label = "Arcporter Pylon", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_ARMOREDARANHANEST", label = "Armored Aranha Nest", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_CHOSENSTRIFEBRINGER", label = "Chosen Strifebringer", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_HIJACKEDTERMINAL", label = "Hijacked Terminal", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_RAIDERDISTRESSBEACON", label = "Raider Distress Beacon", default = false, subtab = {"Objectives", "ARES Missions"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives", "ARES Missions"}})
+
+    InterfaceOptions.StartGroup({label = "Accord Datapad", subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_ACCORDDATAPAD", label = "Accord Datapad", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_ACCORDTERMINAL", label = "Accord Terminal", default = false, subtab = {"Objectives", "ARES Missions"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives", "ARES Missions"}})
+
+    InterfaceOptions.StartGroup({label = "Chosen Bomb", subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_CHOSENBOMB", label = "Chosen Bomb", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_DISRUPTIONDEFUSEPIN", label = "Disruption Defuse Pin", default = false, subtab = {"Objectives", "ARES Missions"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives", "ARES Missions"}})
+
+    InterfaceOptions.StartGroup({label = "Recovery Payload", subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_RECOVERYPAYLOADSTORAGE", label = "Recovery Payload Storage", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_CRYSTITECORE", label = "Crystite Core", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_DRILLPARTS", label = "Drill Parts", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_MEDICALSUPPLIES", label = "Medical Supplies", default = false, subtab = {"Objectives", "ARES Missions"}})
+        InterfaceOptions.AddCheckBox({id = "DEPLOYABLE_OBJECTIVE_TAINTEDCRYSTITE", label = "Tainted Crystite", default = false, subtab = {"Objectives", "ARES Missions"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives", "ARES Missions"}})
+
+    InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_HUD_OBJECTIVE", label = "Show on HUD", default = true, subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_RADAR_OBJECTIVE", label = "Show on radar", default = false, subtab = {"Objectives"}})
+        InterfaceOptions.AddChoiceMenu({id = "MARKER_RADAR_EDGE_OBJECTIVE", label = "Radar edge mode", tooltip = "Behavior for the marker when it reaches the edge of the radar", default = "EDGE_NONE", subtab = {"Objectives"}})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_OBJECTIVE", label = "Always show", val = "EDGE_ALWAYS"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_OBJECTIVE", label = "Replace by an arrow", val = "EDGE_CULLED"})
+            InterfaceOptions.AddChoiceEntry({menuId = "MARKER_RADAR_EDGE_OBJECTIVE", label = "Never show", val = "EDGE_NONE"})
+        InterfaceOptions.AddColorPicker({id = "MARKER_COLOR_OBJECTIVE", label = "Radar marker color", default = {tint = "154889"}, subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_WORLDMAP_OBJECTIVE", label = "Show on world map", default = false, subtab = {"Objectives"}})
+        InterfaceOptions.AddCheckBox({id = "MARKER_PING_OBJECTIVE", label = "Enable ping", default = false, subtab = {"Objectives"}})
+    InterfaceOptions.StopGroup({subtab = {"Objectives"}})
 
     CB2_ApplyOptions = Callback2.Create()
     CB2_ApplyOptions:Bind(Options.ApplyOptions)
@@ -725,7 +887,7 @@ function Options.ListPlayerNames()
         table.insert(nameList, name)
     end
 
-    table.sort(nameList, function(a, b) return a < b end)
+    table.sort(nameList, function(a, b) return unicode.lower(a) < unicode.lower(b) end)
 
     if (#nameList > 0) then
         local nameString = ""
