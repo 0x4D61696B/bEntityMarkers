@@ -95,6 +95,14 @@ function OnEntityLost(args)
     Tracker.RemoveMapMarker(args.entityId)
 end
 
+function OnSquadLeave()
+    Tracker.UpdateGroupMarkers()
+end
+
+function OnSquadRosterUpdate()
+    Tracker.UpdateGroupMarkers()
+end
+
 function OnPlayerReady()
     Tracker.Setup()
 end

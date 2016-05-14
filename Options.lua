@@ -96,7 +96,9 @@ Options.IO = {
             Ranger      = false,
             Publisher   = false,
             Mentor      = false,
-            Army        = false
+            Army        = false,
+            GroupLeader = false,
+            GroupMember = false
         },
 
         Frame = {
@@ -387,6 +389,14 @@ local c_OptionsMap = {
         Options.IO.Character.Special.Army = value
     end,
 
+    CHARACTER_GROUP_LEADER = function(value)
+        Options.IO.Character.Special.GroupLeader = value
+    end,
+
+    CHARACTER_GROUP_MEMBER = function(value)
+        Options.IO.Character.Special.GroupMember = value
+    end,
+
     CHARACTER_FRAME_GROUP = function(value)
         Options.IO.Character.Frame.Enable = value
     end,
@@ -659,6 +669,8 @@ function Options.Setup()
         InterfaceOptions.AddCheckBox({id = "CHARACTER_PUBLISHERS", label = "Publishers", default = false, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "CHARACTER_MENTORS", label = "Mentors", default = false, subtab = {"Special Characters"}})
         InterfaceOptions.AddCheckBox({id = "CHARACTER_ARMY", label = "Army members", default = false, subtab = {"Special Characters"}})
+        InterfaceOptions.AddCheckBox({id = "CHARACTER_GROUP_LEADER", label = "Squad/Platoon leader", default = false, subtab = {"Special Characters"}})
+        InterfaceOptions.AddCheckBox({id = "CHARACTER_GROUP_MEMBER", label = "Squad/Platoon member", default = false, subtab = {"Special Characters"}})
     InterfaceOptions.StopGroup({subtab = {"Special Characters"}})
 
     InterfaceOptions.StartGroup({label = "Marker options", subtab = {"Special Characters"}})

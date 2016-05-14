@@ -26,6 +26,7 @@ Tracker = {}
 local lf                = {}
 
 local g_Deployables     = {}
+local g_GroupLeader     = false
 local g_PlayerTargetId  = -1
 
 local w_MapMarkers      = {}
@@ -84,6 +85,12 @@ function Tracker.CheckEntity(entityId)
 
             elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.Army and entityInfo.army_member) then
                 lf.AddMapMarker(entityId, {name = "<Army> " .. entityName}, "Special", {asset = 159939})
+
+            elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.GroupLeader and entityInfo.squad_leader) then
+                lf.AddMapMarker(entityId, {name = "<Leader> " .. entityName}, "Special", {asset = 159939})
+
+            elseif (Options.IO.Character.Special.Enable and Options.IO.Character.Special.GroupMember and entityInfo.squad_member) then
+                lf.AddMapMarker(entityId, {name = "<Group> " .. entityName}, "Special", {asset = 159939})
 
             -- Tracking by battleframe
             elseif (Options.IO.Character.Frame.Enable and entityInfo.battleframe and Options.IO.Character.Frame["_" .. entityInfo.battleframe] and entityInfo.frame_icon_id  and c_Battleframes[tonumber(entityInfo.frame_icon_id)] and Options.IO.Character.Frame[c_Battleframes[tonumber(entityInfo.frame_icon_id)]]) then
@@ -159,6 +166,42 @@ function Tracker.UpdateMapMarkerVisibility()
         MARKER:ShowOnHud(Options.IO.Marker.HUD[markerType])
         MARKER:ShowOnRadar(Options.IO.Marker.Radar[markerType])
         MARKER:ShowOnWorldMap(Options.IO.Marker.WorldMap[markerType])
+    end
+end
+
+function Tracker.UpdateGroupMarkers()
+    if (Squad.IsInSquad() or Platoon.IsInPlatoon()) then
+        local roster = Squad.GetRoster() or Platoon.GetRoster()
+
+        if (g_GroupLeader ~= roster.leader) then
+            for _, member in pairs(roster.members) do
+                if (lf.HasMapMarker(member.entityId)) then
+                    local MARKER = w_MapMarkers[tostring(member.entityId)]
+
+                    if (Options.IO.Character.Special.GroupLeader and namecompare(member.name, roster.leader)) then
+                        MARKER:SetTitle("<Leader> " .. ChatLib.StripArmyTag(member.name))
+
+                    else
+                        MARKER:SetTitle("<Group> " .. ChatLib.StripArmyTag(member.name))
+                    end
+
+                else
+                    Tracker.CheckEntity(member.entityId)
+                end
+            end
+
+        else
+            for _, member in pairs(roster.members) do
+                Tracker.CheckEntity(member.entityId)
+            end
+        end
+
+        g_GroupLeader = roster.leader
+
+    else
+        g_GroupLeader = false
+
+        Tracker.CheckAvailableTargets()
     end
 end
 
