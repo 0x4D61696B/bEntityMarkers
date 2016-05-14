@@ -51,7 +51,7 @@ function OnSlashCommand(args)
             Options.AddRemovePlayerName(args[1])
         end
     else
-        Notification("/bem <-clear|-list|player_name>\n\t-clear : Clears all currently tracked character names\n\t-list : Lists all currently tracked player names\n\tplayer_name - Adds/removes the specified player name to/from the tracking list")
+        Notification("/bem <-clear | -list | player_name>\n\t-clear : Clears all currently tracked character names\n\t-list : Lists all currently tracked player names\n\tplayer_name : Adds/removes the specified player name to/from the tracking list")
     end
 end
 

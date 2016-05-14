@@ -19,13 +19,15 @@
         <Event name="ON_ENTER_ZONE"                 bind="OnEnterExitZone"          />
         <Event name="ON_EXIT_ZONE"                  bind="OnEnterExitZone"          />
         <Event name="ON_PLAYER_READY"               bind="OnPlayerReady"            />
+        <Event name="ON_SQUAD_LEAVE"                bind="OnSquadLeave"             />
+        <Event name="ON_SQUAD_ROSTER_UPDATE"        bind="OnSquadRosterUpdate"      />
         <Event name="ON_UI_ENTITY_AVAILABLE"        bind="OnEntityAvailable"        />
         <Event name="ON_UI_ENTITY_LOST"             bind="OnEntityLost"             />
     </Events>
 
     <Textures>
-        <Texture name="Publisher" src="components/MainUI/HUD/Chat/Textures/PublisherIcon.png" premultiplied="false" />
-        <Texture name="Ranger" src="components/MainUI/HUD/Chat/Textures/RangerIcon.png" premultiplied="false" />
-        <Texture name="Mentor" src="./textures/mentor.png" premultiplied="false" />
+        <Texture name="Publisher"   premultiplied="false"   src="components/MainUI/HUD/Chat/Textures/PublisherIcon.png" />
+        <Texture name="Ranger"      premultiplied="false"   src="components/MainUI/HUD/Chat/Textures/RangerIcon.png"    />
+        <Texture name="Mentor"      premultiplied="false"   src="./textures/mentor.png"                                 />
     </Textures>
 </Component>
