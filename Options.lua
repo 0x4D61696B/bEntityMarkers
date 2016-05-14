@@ -893,10 +893,10 @@ function Options.ListPlayerNames()
         local nameString = ""
 
         for i = 1, #nameList do
-            nameString = nameString .. ChatLib.EncodePlayerLink(nameList[i]) .. (nameList[i + 1] and ", " or "")
+            nameString = nameString .. ChatLib.EncodePlayerLink(nameList[i]) .. (nameList[i + 1] and (i % 5 == 0 and i < #nameList and ",\n\t" or ", ") or "")
         end
 
-        Notification("Currently tracking " .. tostring(#nameList) .. " name" .. (#nameList > 1 and "s" or "") .. ": " .. nameString)
+        Notification("Currently tracking " .. tostring(#nameList) .. " name" .. (#nameList > 1 and "s" or "") .. ":\n\t" .. nameString)
     else
         Notification("There are no names on the tracking list.")
     end
